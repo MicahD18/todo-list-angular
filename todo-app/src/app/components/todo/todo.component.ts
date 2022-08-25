@@ -10,13 +10,14 @@ export class TodoComponent implements OnInit {
   
   todos: Todo[] | undefined;
 
+  inputTodo:string = "";
+
   constructor() {}
 
   ngOnInit(): void {
     this.todos = [
-      { content: 'Code', completed: true },
+      { content: 'Code', completed: false },
       { content: 'Learn Angular', completed: false },
-      { content: "Learn Rubik's Cube", completed: false },
     ];
   }
 
@@ -30,4 +31,15 @@ export class TodoComponent implements OnInit {
     })
   }
 
+  deleteTodo(id: number) {
+    this.todos = this.todos?.filter((value, index) => index !== id);
+  }
+  
+  addTodo() {
+    this.todos?.push({
+      content: this.inputTodo,
+      completed: false
+    })
+    this.inputTodo = "";
+  }
 }
